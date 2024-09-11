@@ -10,7 +10,7 @@ node_modules/
 
 # Environment variables
 .DS_Store
-
+.env
 dist/
 
 # Ignore the config file (contains sensitive information such as tokens)

@@ -338,7 +338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/pieces@npm:^4.2.2":
+"@sapphire/pieces@npm:^4.2.2, @sapphire/pieces@npm:^4.3.1":
   version: 4.3.1
   resolution: "@sapphire/pieces@npm:4.3.1"
   dependencies:
@@ -546,6 +546,7 @@ __metadata:
     "@sapphire/discord.js-utilities": "npm:7.1.6"
     "@sapphire/fetch": "npm:^3.0.3"
     "@sapphire/framework": "npm:^5.2.1"
+    "@sapphire/pieces": "npm:^4.3.1"
     "@sapphire/plugin-api": "npm:^6.1.1"
     "@sapphire/plugin-editable-commands": "npm:^4.0.2"
     "@sapphire/plugin-logger": "npm:^4.0.2"

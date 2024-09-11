@@ -14,7 +14,7 @@ model User {
   email     String   @unique
   orders    Order[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now()) @updatedAt
 }
 
 model Product {
@@ -23,10 +23,19 @@ model Product {
   description  String
   price        Float
   stock        Int
+  emoji        String
+  categoryId   Int
+  category     Category       @relation(fields: [categoryId], references: [id])
   orders       Order[]
   createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
+  updatedAt    DateTime       @default(now()) @updatedAt
   OrderProduct OrderProduct[]
+}
+
+model Category {
+  id       Int       @id @default(autoincrement())
+  name     String
+  products Product[]
 }
 
 model Order {
@@ -37,10 +46,10 @@ model Order {
   totalAmount Float
   status      OrderStatus    @default(PENDING)
   createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  updatedAt   DateTime       @default(now()) @updatedAt
+  Transaction Transaction[]
   Product     Product?       @relation(fields: [productId], references: [id])
   productId   Int?
-  Transaction Transaction[]
 }
 
 enum OrderStatus {
@@ -57,7 +66,7 @@ model OrderProduct {
   order     Order   @relation(fields: [orderId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
 }
-  
+
 model Transaction {
   id        Int               @id @default(autoincrement())
   orderId   Int
@@ -65,7 +74,7 @@ model Transaction {
   amount    Float
   status    TransactionStatus @default(PENDING)
   createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
+  updatedAt DateTime          @default(now()) @updatedAt
 }
 
 enum TransactionStatus {

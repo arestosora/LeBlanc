@@ -1,8 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { container, LogLevel, SapphireClient } from "@sapphire/framework";
+import { getRootData } from "@sapphire/pieces";
 import { GatewayIntentBits, Partials } from "discord.js";
+import { join } from "path";
 
 export class Client extends SapphireClient {
+    private rootData = getRootData();
     constructor() {
         super({
             defaultPrefix: '!',
@@ -27,6 +30,8 @@ export class Client extends SapphireClient {
             partials: [Partials.Channel],
             loadMessageCommandListeners: true
         })
+
+        this.stores.get('interaction-handlers').registerPath(join(this.rootData.root, 'interactions'));
     }
 
     public override async login(token?: string): Promise<string> {
@@ -34,6 +39,3 @@ export class Client extends SapphireClient {
         return super.login(token)
     }
 }
-
-const client = new Client();
-export default client;
